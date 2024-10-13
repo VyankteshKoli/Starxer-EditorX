@@ -133,7 +133,7 @@
         <div class="form-group">
             <label for="username">Username</label>
             <input type="text" id="username" name="username" placeholder="Enter your username" required>
-            <div class="error-message" id="usernameError">Please enter your username.</div>
+            <div class="error-message" id="usernameError">Please enter your Username.</div>
         </div>
 
         <div class="form-group">
@@ -166,8 +166,6 @@
         passwordInput.setAttribute('type', type);
         this.textContent = type === 'password' ? '👁️' : '🙈';
     });
-
-    // Form Validation
     const loginForm = document.getElementById('loginForm');
     const usernameInput = document.getElementById('username');
     const passwordInputField = document.getElementById('password');
@@ -176,16 +174,12 @@
 
     loginForm.addEventListener('submit', function (e) {
         let valid = true;
-
-        // Username Validation
         if (usernameInput.value.trim() === '') {
             usernameError.style.display = 'block';
             valid = false;
         } else {
             usernameError.style.display = 'none';
         }
-
-        // Password Validation
         if (passwordInputField.value.trim() === '') {
             passwordError.style.display = 'block';
             valid = false;
@@ -194,15 +188,10 @@
         }
 
         if (!valid) {
-            e.preventDefault(); // Prevent form submission
+            e.preventDefault();
         }
     });
-
-    // Optional: Remember Me Functionality (Client-Side Example)
     const rememberMeCheckbox = document.getElementById('rememberMe');
-
-    // On form submit, you could handle the remember me functionality
-    // For demonstration, we'll save the username in localStorage
     loginForm.addEventListener('submit', function () {
         if (rememberMeCheckbox.checked) {
             localStorage.setItem('rememberedUsername', usernameInput.value);
@@ -210,8 +199,6 @@
             localStorage.removeItem('rememberedUsername');
         }
     });
-
-    // On page load, check if username is remembered
     window.addEventListener('load', function () {
         const rememberedUsername = localStorage.getItem('rememberedUsername');
         if (rememberedUsername) {
